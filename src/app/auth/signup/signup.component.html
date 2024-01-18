@@ -7,9 +7,42 @@
             class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                    Sign in to your account
+                    Sign up to your account
                 </h1>
                 <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-4 md:space-y-6">
+                    <div>
+                        <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                            First Name</label>
+                        <input type="firstName" name="firstName" id="firstName" formControlName="firstName"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="enter first name" required="">
+                    </div>
+                    <div class="text-red-300 ">
+                        @if(this.form.controls["firstName"].invalid && (this.form.controls["firstName"].dirty ||
+                        this.form.controls["firstName"].touched)){
+                        @if(this.form.controls["firstName"].errors){
+                        @if(this.form.controls["firstName"].errors["required"]){
+                        Please Enter First Name
+                        }}
+                        }
+
+                    </div>
+                    <div>
+                        <label for="lastName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                            Last Name</label>
+                        <input type="lastName" name="lastName" id="lastName" formControlName="lastName"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="enter last name" required="">
+                    </div>
+                    <div class="text-red-300 ">
+                        @if(this.form.controls["lastName"].invalid && (this.form.controls["lastName"].dirty ||
+                        this.form.controls["lastName"].touched)){
+                        @if(this.form.controls["lastName"].errors){
+                        @if(this.form.controls["lastName"].errors["required"]){
+                        Please Enter Last Name
+                        }}
+                        }
+                    </div>
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
                             email</label>
@@ -27,9 +60,7 @@
                         Please Enter Valid Email Id
                         }}
                         }
-
                     </div>
-
                     <div>
                         <label for="password"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
@@ -51,8 +82,6 @@
                         maximum limit of password is 50 character
                         }}
                         }
-
-
                     </div>
                     <div class="flex items-center justify-between">
                         <div class="flex items-start">
@@ -70,11 +99,11 @@
                             password?</a>
                     </div>
                     <button type="submit"
-                        class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign
-                        in</button>
+                        class="w-full text-white bg-primary-600 dark:border-white dark:border-2 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign
+                        Up</button>
                     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                        Don’t have an account yet? <a href="#"
-                            class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
+                        If you have account please <a routerLink="../login"
+                            class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign in</a>
                     </p>
                 </form>
             </div>
