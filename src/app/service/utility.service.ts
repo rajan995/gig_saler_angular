@@ -1,18 +1,40 @@
-import { Injectable } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
+import { Inject, Injectable, PLATFORM_ID, effect, signal } from "@angular/core";
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { json } from "stream/consumers";
 @Injectable({
     providedIn: 'root'
 })
 export class UtilityService {
 
-    constructor() {
+    darkModeSignal = signal<boolean>( JSON.parse(this.getValue(keyEnum.DARK_MODE ) ?? "false") );
+
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+     
+        this.darkMode();
+    }
+    darkMode() {
+       effect(()=>{
+        this.setValue(keyEnum.DARK_MODE,this.darkModeSignal().toString());
+       })
 
     }
+   
+
     setValue(key: keyEnum, value: string) {
-        return localStorage.setItem(key, value)
+
+        const isBrowser = isPlatformBrowser(this.platformId);
+        if (isBrowser) {
+             localStorage.setItem(key, value)
+        }
+      
     }
-    getValue(key: keyEnum) {
-        return localStorage.getItem(key);
+    getValue(key: keyEnum):string|null {
+        const isBrowser = isPlatformBrowser(this.platformId);
+        if (isBrowser) {
+            return localStorage.getItem(key);
+        }
+        return null;
     }
     decodeToken() {
         const token = this.getValue(keyEnum.TOKEN);
@@ -28,9 +50,10 @@ export class UtilityService {
             return false
         }
     }
-    
+
 
 }
 export enum keyEnum {
-    TOKEN = "token"
+    TOKEN = "token",
+    DARK_MODE = "dark_mode"
 }

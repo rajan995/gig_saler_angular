@@ -1,28 +1,17 @@
-import { PLATFORM_ID, inject } from '@angular/core';
+import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
 import { UtilityService } from '../service/utility.service';
-import { isPlatformBrowser } from '@angular/common';
 
 export const adminGuard: CanActivateFn = (route, state) => {
-  
-  const  utility = inject(UtilityService);
- const platformId = inject(PLATFORM_ID);
- const isBrowser = isPlatformBrowser(platformId);
- 
- let user :any;
+  const utility = inject(UtilityService);
+  let user = utility.decodeToken();
+  if (!user) {
+    return false;
+  }
 
-if(isBrowser){
-  user =  utility.decodeToken();
-}
- 
-if(!user){
+  if (user['role'] == "admin") {
+    return true
+  }
   return false;
-}
 
- if(user['role'] == "admin"){
-  
-  return true
- }
- return false;
-  
 };

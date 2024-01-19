@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { UtilityService } from './service/utility.service';
+
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,17 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit{
+  constructor(private utility:UtilityService){
+
+  }
   title = 'angularApp';
   ngOnInit(): void {
     
   }
+
+  @HostBinding('class.dark') get mode(){
+    console.log("dark mode")
+    return this.utility.darkModeSignal();
+  }
+
 }

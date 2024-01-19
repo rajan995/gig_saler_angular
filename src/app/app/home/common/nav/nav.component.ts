@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { UtilityService } from "../../../../service/utility.service";
 
 @Component({
     standalone:true,
@@ -7,7 +8,13 @@ import { Component } from "@angular/core";
     styleUrl:'nav.component.scss'
 })
 export class NavComponent{
-    constructor(){
+    constructor(public utility:UtilityService){
 
+    }
+    notification(){
+
+    }
+    menue(){
+        
     }
 }

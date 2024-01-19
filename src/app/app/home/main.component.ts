@@ -6,14 +6,15 @@ import { FooterComponent } from "./common/footer/footer.component";
 
 @Component({
     standalone:true,
-    selector:'home',
-    templateUrl:'home.component.html',
-    styleUrl:'home.component.scss',
-    imports:[RouterOutlet,NavComponent],
+    selector:'main',
+    templateUrl:'main.component.html',
+    styleUrl:'main.component.scss',
+    imports:[RouterOutlet,NavComponent,SidebarComponent],
     
 })
-export class HomeComponent{
+export class MainComponent{
     constructor(){
-        console.log("homecom")
+       
     }
+  
 }
