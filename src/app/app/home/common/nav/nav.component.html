@@ -1,59 +1,52 @@
-<header class="border-2 border-gray-200 border-dashed  dark:border-gray-700">
-    <nav class="mx-auto flex justify-between border-gray-200 " >
-        <div class="px-3 py-3 lg:px-5 lg:pl-3 w-full">
-            <div class="flex items-center justify-between">
-              
-                <div class="flex items-center justify-between ">
+<header class="border-2 bg-white sticky top-0  border-gray-200 border-dashed  dark:border-gray-700 ">
+    <nav class="mx-auto flex justify-between border-gray-200 w-full " >
+        
+                <div class="  flex items-center justify-between  w-full py-3">
                     <div class="flex items-center justify-start ">
-                        <button (click)="notification()" class="mx-3">
-                        <div class="w-8  hover:text-gray-300 text-black  dark:text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" aria-hidden="true" class="oc se">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0">
-                                </path>
-                            </svg>
+                      
+                        <button (click)="menue()" class="mx-3 block lg:hidden" >
+                        <div class="w-8 hover:text-gray-300 text-black dark:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                              </svg>
+                              
                         </div>
                     </button>
-                        <button (click)="menue()" class="mx-3">
-                        <div class="w-8 hover:text-gray-300 text-black dark:text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" aria-hidden="true" class="oc se">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-                            </svg>
+                    </div>
+                    <div>
+                        <button (click)="notification()" class="mx-3">
+                            <div class="w-8  hover:text-gray-300 text-black  dark:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
+                                  </svg>
+                                  
+                            </div>
+                        </button>
+                    <button (click)="chat()" class="mx-3">
+                        <div class="w-8  hover:text-gray-300 text-black  dark:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                              </svg>
+                          
+                              
                         </div>
                     </button>
                     <button class="mx-3" (click)="utility.darkModeSignal.set(!utility.darkModeSignal())"  >
-                        <span [class.hidden]="utility.darkModeSignal() == true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="w-6 h-6">
-                            <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" class="fill-sky-400/20 stroke-sky-500"></path>
-                            <path
-                                d="M12 4v1M17.66 6.344l-.828.828M20.005 12.004h-1M17.66 17.664l-.828-.828M12 20.01V19M6.34 17.664l.835-.836M3.995 12.004h1.01M6 6l.835.836"
-                                class="stroke-sky-500"></path>
-                        </svg></span>
-
-                    <span [class.hidden]="utility.darkModeSignal() == false"  class="text-black"><svg viewBox="0 0 24 24" fill="none" class="w-6 h-6">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M17.715 15.15A6.5 6.5 0 0 1 9 6.035C6.106 6.922 4 9.645 4 12.867c0 3.94 3.153 7.136 7.042 7.136 3.101 0 5.734-2.032 6.673-4.853Z"
-                                class="fill-sky-400/20"></path>
-                            <path
-                                d="m17.715 15.15.95.316a1 1 0 0 0-1.445-1.185l.495.869ZM9 6.035l.846.534a1 1 0 0 0-1.14-1.49L9 6.035Zm8.221 8.246a5.47 5.47 0 0 1-2.72.718v2a7.47 7.47 0 0 0 3.71-.98l-.99-1.738Zm-2.72.718A5.5 5.5 0 0 1 9 9.5H7a7.5 7.5 0 0 0 7.5 7.5v-2ZM9 9.5c0-1.079.31-2.082.845-2.93L8.153 5.5A7.47 7.47 0 0 0 7 9.5h2Zm-4 3.368C5 10.089 6.815 7.75 9.292 6.99L8.706 5.08C5.397 6.094 3 9.201 3 12.867h2Zm6.042 6.136C7.718 19.003 5 16.268 5 12.867H3c0 4.48 3.588 8.136 8.042 8.136v-2Zm5.725-4.17c-.81 2.433-3.074 4.17-5.725 4.17v2c3.552 0 6.553-2.327 7.622-5.537l-1.897-.632Z"
-                                class="fill-sky-500"></path>
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M17 3a1 1 0 0 1 1 1 2 2 0 0 0 2 2 1 1 0 1 1 0 2 2 2 0 0 0-2 2 1 1 0 1 1-2 0 2 2 0 0 0-2-2 1 1 0 1 1 0-2 2 2 0 0 0 2-2 1 1 0 0 1 1-1Z"
-                                class="fill-sky-500"></path>
-                        </svg></span>
+                      
+                        <svg [class.hidden]="utility.darkModeSignal() == true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+                          </svg>
+                          
+                        <svg [class.hidden]="utility.darkModeSignal() == false"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                          </svg>
+                          
+                
                     </button>
                 
-                    </div>
-                  
-                
-              
+                </div>
                    
                 </div>
-            </div>
-        </div>
-
+          
     </nav>
 </header>

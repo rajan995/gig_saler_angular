@@ -15,6 +15,9 @@ export class NavComponent{
 
     }
     menue(){
-        
+        this.utility.enableMobileMenu.set(true)
+    }
+    chat(){
+
     }
 }

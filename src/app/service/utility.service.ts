@@ -1,35 +1,37 @@
 import { isPlatformBrowser } from "@angular/common";
-import { Inject, Injectable, PLATFORM_ID, effect, signal } from "@angular/core";
+import { EffectRef, Inject, Injectable, OnDestroy, PLATFORM_ID, effect, signal } from "@angular/core";
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { json } from "stream/consumers";
+
 @Injectable({
     providedIn: 'root'
 })
-export class UtilityService {
+export class UtilityService implements OnDestroy {
 
-    darkModeSignal = signal<boolean>( JSON.parse(this.getValue(keyEnum.DARK_MODE ) ?? "false") );
+    darkModeSignal = signal<boolean>(JSON.parse(this.getValue(keyEnum.DARK_MODE) ?? "false"));
+    enableMobileMenu = signal<boolean>(false);
 
+    darkModeEffect?: EffectRef;
     constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-     
+
         this.darkMode();
     }
     darkMode() {
-       effect(()=>{
-        this.setValue(keyEnum.DARK_MODE,this.darkModeSignal().toString());
-       })
+        this.darkModeEffect = effect(() => {
+            this.setValue(keyEnum.DARK_MODE, this.darkModeSignal().toString());
+        })
 
     }
-   
+
 
     setValue(key: keyEnum, value: string) {
 
         const isBrowser = isPlatformBrowser(this.platformId);
         if (isBrowser) {
-             localStorage.setItem(key, value)
+            localStorage.setItem(key, value)
         }
-      
+
     }
-    getValue(key: keyEnum):string|null {
+    getValue(key: keyEnum): string | null {
         const isBrowser = isPlatformBrowser(this.platformId);
         if (isBrowser) {
             return localStorage.getItem(key);
@@ -50,7 +52,9 @@ export class UtilityService {
             return false
         }
     }
-
+    ngOnDestroy(): void {
+        this.darkModeEffect?.destroy();
+    }
 
 }
 export enum keyEnum {

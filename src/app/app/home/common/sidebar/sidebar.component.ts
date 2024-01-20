@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { RouterLink, RouterLinkActive } from "@angular/router";
+import { UtilityService } from "../../../../service/utility.service";
 
 @Component({
     standalone: true,
@@ -9,6 +10,7 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
     imports: [RouterLink, RouterLinkActive]
 })
 export class SidebarComponent {
+   
     menus: Array<Record<string, any>> = [{
         name: 'Home',
         url: '',
@@ -44,7 +46,10 @@ export class SidebarComponent {
         url: 'contact'
     }
     ]
-    constructor() {
+    constructor(public utility:UtilityService) {
 
+    }
+    hideSideMenu(){
+ this.utility.enableMobileMenu.set(false);
     }
 }

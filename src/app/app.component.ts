@@ -1,5 +1,5 @@
-import { Component, HostBinding, OnInit, effect } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, HostBinding, HostListener, Inject, OnInit, PLATFORM_ID, afterNextRender, effect, inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { UtilityService } from './service/utility.service';
 
@@ -11,18 +11,37 @@ import { UtilityService } from './service/utility.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit{
-  constructor(private utility:UtilityService){
-
-  }
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'angularApp';
+
+  constructor(private utility: UtilityService, @Inject(PLATFORM_ID) private platformId: Object) {
+
+  }
+  
   ngOnInit(): void {
-    
+
+  }
+  ngAfterViewInit(): void {
+    const isBrowser = isPlatformBrowser(this.platformId);
+    if (isBrowser) {
+      this.onResize()
+    }
+
+
   }
 
-  @HostBinding('class.dark') get mode(){
-    console.log("dark mode")
+  @HostBinding('class.dark') get mode() {
     return this.utility.darkModeSignal();
   }
-
+  
+  @HostListener("window:resize", [])
+  private onResize() {
+    if (window.innerWidth >= 1024) {
+      if (this.utility.enableMobileMenu() == false) {
+        this.utility.enableMobileMenu.set(true);
+      }
+    }
+  }
 }
+
+
