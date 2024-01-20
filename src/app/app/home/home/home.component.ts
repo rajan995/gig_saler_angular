@@ -1,4 +1,4 @@
-import { Component, OnDestroy, afterNextRender } from "@angular/core";
+import { Component, OnDestroy, OnInit, afterNextRender } from "@angular/core";
 import { ApiService } from "../../../service/api.service";
 import { ResumeInterface } from "../../../interface/resume.interface";
 import {  Subscription } from "rxjs";
@@ -8,13 +8,16 @@ import {  Subscription } from "rxjs";
     templateUrl: 'home.component.html',
     styleUrl: 'home.component.scss'
 })
-export class HomeComponent implements OnDestroy{
+export class HomeComponent implements OnDestroy, OnInit{
 data?:ResumeInterface;
 resumeSubsctiption?:Subscription;
     constructor(private api: ApiService) {
-   afterNextRender(()=>{
-    this.getApiCall();
-   })
+
+ 
+   
+    }
+    ngOnInit(): void {
+        this.getApiCall();
     }
     getApiCall() {
       this.resumeSubsctiption=  this.api.getResume().subscribe({
