@@ -20,7 +20,7 @@ resumeSubsctiption?:Subscription;
         this.getApiCall();
     }
     getApiCall() {
-      this.resumeSubsctiption=  this.api.getResume().subscribe({
+      this.resumeSubsctiption =  this.api.getResume().subscribe({
             next: (data) => {
                
                 this.data = data;

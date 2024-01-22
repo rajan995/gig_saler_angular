@@ -10,7 +10,7 @@ import { UtilityService } from "../../../../service/utility.service";
     imports: [RouterLink, RouterLinkActive]
 })
 export class SidebarComponent {
-   
+  
     menus: Array<Record<string, any>> = [{
         name: 'Home',
         url: '',
